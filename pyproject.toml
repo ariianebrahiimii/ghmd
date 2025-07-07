@@ -3,14 +3,13 @@ requires = ["setuptools>=69.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ghmd"
+name = "behsareport"
 version = "0.3.0"
 description = "A simple CLI to convert markdown files to HTML using GitHub API using the GitHub Markdown style."
 readme = "README.md"
-authors = [{ name = "Román Via-Dufrese Saus", email = "roman910dev@gmail.com" }]
+authors = [{ name = "Arian Ebrahimi", email = "ae@arianebrahimni.ir" }]
 classifiers = [
     "License :: OSI Approved :: MIT License",
-
     "Intended Audience :: End Users/Desktop",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Build Tools",
@@ -29,13 +28,16 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 keywords = ["markdown", "github", "cli", "html", "converter"]
-dependencies = ["requests"]
+dependencies = [
+    "jdatetime>=3.8.2",
+    "requests",
+]
 requires-python = ">=3.6"
 
 [project.urls]
-Homepage = "https://github.com/roman910dev/ghmd"
-Repository = "https://github.com/roman910dev/ghmd.git"
-Changelog = "https://github.com/roman910dev/ghmd/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/ariianebrahiimii/ghmd"
+Repository = "https://github.com/ariianebrahiimii/ghmd.git"
+Changelog = "https://github.com/ariianebrahiimii/ghmd/blob/main/CHANGELOG.md"
 
 [project.scripts]
-ghmd = "ghmd.__main__:main"
+behsareport     = "ghmd.__main__:main"

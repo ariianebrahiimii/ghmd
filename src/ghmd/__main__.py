@@ -4,19 +4,20 @@ import re
 import sys
 import requests
 
-
 def main():
     files = [argv for argv in sys.argv[1:] if not argv.startswith('--')]
 
     theme = (
         '-dark' if '--dark' in sys.argv else
         '-light' if '--light' in sys.argv else
-        ''
+        '-dark'
     )
 
-    embed_css = '--embed-css' in sys.argv
+    embed_css = '--embed-css' in sys.argv or "--embed-css"
 
     mode = 'markdown' if '--no-gfm' in sys.argv else 'gfm'
+
+    company = "--behsa" in sys.argv or ""
 
     if any(file.endswith('.html') for file in files):
         raise Exception(
@@ -71,6 +72,18 @@ def main():
                 'Check your internet connection.'
             )
 
+        import jdatetime
+        from datetime import datetime
+
+        # Suppose you have the date somewhere, for example, now:
+        gregorian_date = datetime.now()
+
+        # Convert to Jalali
+        jalali_date = jdatetime.datetime.fromgregorian(datetime=gregorian_date)
+
+        # Format the Jalali date as string, e.g. YYYY/MM/DD
+        jalali_date_str = jalali_date.strftime('%Y/%m/%d')
+
         filename = '.'.join(file.split('.')[:-1])
         with open(f'{filename}.html', 'w+', encoding='utf-8') as f:
             f.write(
@@ -78,6 +91,7 @@ def main():
                 .replace('{{ .CSS }}', css)
                 .replace('{{ .Title }}', title)
                 .replace('{{ .Content }}', res.text)
+                .replace('{{ .Date }}', jalali_date_str) 
             )
 
 
